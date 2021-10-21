@@ -1,0 +1,14 @@
+
+- name: duc
+  type: local
+  address: earth19drfxlfnfrqg23r0q7nh00mdr60gcllsnze3dl
+  pubkey: earthpub1addwnpepq26anuc6x3e562f0eps3sh60exsfp8zqw7v7y85vex7fs4gjeaztv4hukm8
+  mnemonic: ""
+  threshold: 0
+  pubkeys: []
+
+
+**Important** write this mnemonic phrase in a safe place.
+It is the only way to recover your account if you ever forget your password.
+
+leave under maid never innocent hundred clutch extend panel view body script hire derive two equal prosper sword struggle clog cube viable antenna rather

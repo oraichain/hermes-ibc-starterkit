@@ -1,0 +1,38 @@
+#!/bin/bash -e
+
+usage() {
+  echo "Usage: $0 CONFIG_FILE CHAIN_0_ID CHAIN_1_ID"
+  echo "Example: $0 ./config.toml ibc-0 ibc-1"
+  exit 1
+}
+
+missing() {
+  echo "Missing $1 parameter. Please check if all parameters were specified."
+  usage
+}
+
+if [ ! -r "$1" ]; then
+  missing "CONFIG_FILE ($1)"
+fi
+
+if [ -z "$2" ]; then
+  missing "CHAIN_0_ID"
+fi
+
+if [ -z "$3" ]; then
+  missing "CHAIN_1_ID"
+fi
+
+
+if [ "$#" -gt 4 ]; then
+  echo "Incorrect number of parameters."
+  usage
+fi
+
+CONFIG_FILE="$1"
+CHAIN_0_ID="$2"
+CHAIN_1_ID="$3"
+
+echo "$CONFIG_FILE"
+
+hermes -c $CONFIG_FILE tx raw create-client "$CHAIN_0_ID" "$CHAIN_1_ID" 

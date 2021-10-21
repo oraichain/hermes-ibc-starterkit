@@ -1,0 +1,9 @@
+{
+  "network": "Mars",
+  "name": "duc",
+  "type": "local",
+  "address": "mars1tghjs7kvx8dypj3m609h3v43yne70tkky9690x",
+  "pubkey": "marspub1addwnpepq2yekjrkmh9fhx665cv8fv7wp0ccg62cwcgug787ja7n45ne98yqsw8flff",
+  "threshold": "0",
+  "mnemonic": "useless lamp wood liberty giant mixed hedgehog frown empty garden crush print pen giraffe shoot satisfy lobster pave ready autumn evil apology globe later"
+}

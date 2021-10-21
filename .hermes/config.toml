@@ -1,0 +1,86 @@
+# The global section has parameters that apply globally to the relayer operation.
+[global]
+
+# Specify the strategy to be used by the relayer. Default: 'packets'
+# Two options are currently supported:
+#   - 'all': Relay packets and perform channel and connection handshakes.
+#   - 'packets': Relay packets only.
+strategy = 'packets'
+
+# Enable or disable the filtering mechanism. Default: 'false'
+# Valid options are 'true', 'false'.
+# Currently Hermes supports two filters:
+# 1. Packet filtering on a per-chain basis; see the chain-specific
+#   filter specification below in [chains.packet_filter].
+# 2. Filter for all activities based on client state trust threshold; this filter
+#   is parametrized with (numerator = 1, denominator = 3), so that clients with
+#   thresholds different than this will be ignored.
+# If set to 'true', both of the above filters will be enabled.
+filter = false
+
+# Specify the verbosity for the relayer logging output. Default: 'info'
+# Valid options are 'error', 'warn', 'info', 'debug', 'trace'.
+log_level = 'info'
+
+# Parametrize the periodic packet clearing feature.
+# Interval (in number of blocks) at which pending packets
+# should be eagerly cleared. A value of '0' will disable
+# periodic packet clearing. Default: 100
+clear_packets_interval = 100
+
+tx_confirmation = true
+
+# The telemetry section defines parameters for Hermes' built-in telemetry capabilities.
+# https://hermes.informal.systems/telemetry.html
+[telemetry]
+
+# Whether or not to enable the telemetry service. Default: false
+enabled = true
+
+# Specify the IPv4/6 host over which the built-in HTTP server will serve the metrics
+# gathered by the telemetry service. Default: 127.0.0.1
+host = '0.0.0.0'
+
+# Specify the port over which the built-in HTTP server will serve the metrics gathered
+# by the telemetry service. Default: 3001
+port = 3001
+
+[rest]
+enabled = true
+host = '0.0.0.0'
+port = 3000
+
+
+[[chains]]
+id = 'Earth'
+rpc_addr = 'http://127.0.0.1:26657'
+grpc_addr = 'http://127.0.0.1:9090'
+websocket_addr = 'ws://127.0.0.1:26657/websocket'
+rpc_timeout = '10s'
+account_prefix = 'earth'
+key_name = 'testkey'
+address_type = { derivation = 'cosmos' }
+store_prefix = 'ibc'
+max_gas = 2000000
+gas_price = { price = 0.001, denom = 'earth' }
+gas_adjustment = 0.1
+clock_drift = '5s'
+trusting_period = '1hours'
+trust_threshold = { numerator = '1', denominator = '3' }
+
+[[chains]]
+id = 'Mars'
+rpc_addr = 'http://127.0.0.1:26659'
+grpc_addr = 'http://127.0.0.1:9091'
+websocket_addr = 'ws://127.0.0.1:26659/websocket'
+rpc_timeout = '10s'
+account_prefix = 'mars'
+key_name = 'testkey'
+address_type = { derivation = 'cosmos' }
+store_prefix = 'ibc'
+max_gas = 2000000
+gas_price = { price = 0.001, denom = 'mars' }
+gas_adjustment = 0.1
+clock_drift = '5s'
+trusting_period = '1hours'
+trust_threshold = { numerator = '1', denominator = '3' }

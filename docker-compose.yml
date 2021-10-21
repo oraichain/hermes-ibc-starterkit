@@ -1,0 +1,41 @@
+version: '3.3'
+services:
+  earth:
+    image: alpine:3.12
+    tty: true
+    env_file:
+      - .env
+    environment:
+      - DENOM=earth
+      - CHAIN_ID=Earth
+    working_dir: /workspace
+    command: /workspace/scripts/setup_genesis.sh
+    ports:
+      - 1317:1317
+      - 9090:9090
+      - 26656:26656
+      - 26657:26657
+    volumes:
+      - ./.earth:/workspace/.earth
+      - ./scripts:/workspace/scripts
+      - ./build:/usr/local/bin
+
+  mars:
+    image: alpine:3.12
+    tty: true
+    env_file:
+      - .env
+    environment:
+      - DENOM=mars
+      - CHAIN_ID=Mars
+    working_dir: /workspace
+    command: /workspace/scripts/setup_genesis.sh
+    ports:
+      - 1318:1317
+      - 9091:9090
+      - 26658:26656
+      - 26659:26657
+    volumes:
+      - ./.mars:/workspace/.mars
+      - ./scripts:/workspace/scripts
+      - ./build:/usr/local/bin
